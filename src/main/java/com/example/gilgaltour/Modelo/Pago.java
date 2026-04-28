@@ -1,5 +1,7 @@
 package com.example.gilgaltour.Modelo;
 
+import java.util.List;
+import jakarta.persistence.*;
 import jakarta.persistence.Column;
 import jakarta.persistence.Table;
 import jakarta.persistence.Id;
@@ -11,29 +13,35 @@ import java.time.LocalDate;
 @Table(name= "pago")
 public class Pago {
     @Id
-    @Column(name="idpago", length = 15, nullable = false)
-    String idPago;
     @Column(length = 15, nullable = false)
-    String ideReserva;
+    String idpago;
     @Column(length = 15, nullable = false)
-    LocalDate fechaPago;
+    String idereserva;
+    @Column(length = 15, nullable = false)
+    LocalDate fechapago;
     @Column(length = 50, nullable = false)
-    Float totalPagado;
-    @Column(length = 10, nullable = false)
-    String metodoPago;
+    Float totalpagado;
+    @Column(length = 50, nullable = false)
+    String metodopago;
     @Column(length = 200, nullable = false)
-    String estadoPago;
+    String estadopago;
 
     //Relaciones
+    @ManyToOne
+    @JoinColumn(insertable = false, updatable = false)
+    private Reservas reserva;
+
 
     //Constructores
-    public Pago(String idPago, String ideReserva, LocalDate fechaPago, Float totalPagado, String metodoPago, String estadoPago) {
-        this.idPago = idPago;
-        this.ideReserva = ideReserva;
-        this.fechaPago = fechaPago;
-        this.totalPagado = totalPagado;
-        this.metodoPago = metodoPago;
-        this.estadoPago = estadoPago;
+
+
+    public Pago(String idpago, String idereserva, LocalDate fechapago, Float totalpagado, String metodopago, String estadopago) {
+        this.idpago = idpago;
+        this.idereserva = idereserva;
+        this.fechapago = fechapago;
+        this.totalpagado = totalpagado;
+        this.metodopago = metodopago;
+        this.estadopago = estadopago;
     }
 
     public Pago() {
@@ -41,51 +49,52 @@ public class Pago {
 
     //Encapsular
 
-    public String getIdPago() {
-        return idPago;
+
+    public String getIdpago() {
+        return idpago;
     }
 
-    public void setIdPago(String idPago) {
-        this.idPago = idPago;
+    public void setIdpago(String idpago) {
+        this.idpago = idpago;
     }
 
-    public String getIdeReserva() {
-        return ideReserva;
+    public String getIdereserva() {
+        return idereserva;
     }
 
-    public void setIdeReserva(String ideReserva) {
-        this.ideReserva = ideReserva;
+    public void setIdereserva(String idereserva) {
+        this.idereserva = idereserva;
     }
 
-    public LocalDate getFechaPago() {
-        return fechaPago;
+    public LocalDate getFechapago() {
+        return fechapago;
     }
 
-    public void setFechaPago(LocalDate fechaPago) {
-        this.fechaPago = fechaPago;
+    public void setFechapago(LocalDate fechapago) {
+        this.fechapago = fechapago;
     }
 
-    public Float getTotalPagado() {
-        return totalPagado;
+    public Float getTotalpagado() {
+        return totalpagado;
     }
 
-    public void setTotalPagado(Float totalPagado) {
-        this.totalPagado = totalPagado;
+    public void setTotalpagado(Float totalpagado) {
+        this.totalpagado = totalpagado;
     }
 
-    public String getMetodoPago() {
-        return metodoPago;
+    public String getMetodopago() {
+        return metodopago;
     }
 
-    public void setMetodoPago(String metodoPago) {
-        this.metodoPago = metodoPago;
+    public void setMetodopago(String metodopago) {
+        this.metodopago = metodopago;
     }
 
-    public String getEstadoPago() {
-        return estadoPago;
+    public String getEstadopago() {
+        return estadopago;
     }
 
-    public void setEstadoPago(String estadoPago) {
-        this.estadoPago = estadoPago;
+    public void setEstadopago(String estadopago) {
+        this.estadopago = estadopago;
     }
 }

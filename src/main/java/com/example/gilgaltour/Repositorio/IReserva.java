@@ -8,7 +8,6 @@ import java.util.List;
 
 @Repository
 public interface IReserva extends JpaRepository<Reservas,String> {
-    List<Reservas> findByIdeCliente(String ideCliente);
-    List<Reservas> findByIdReserva(String idReserva);
-    List<Reservas> findByIdePaquete(String idePaquete);
+    List<Reservas> findByIdecliente(String Idecliente);
+    List<Reservas> findByIdepaquete(String Idepaquete);
 }

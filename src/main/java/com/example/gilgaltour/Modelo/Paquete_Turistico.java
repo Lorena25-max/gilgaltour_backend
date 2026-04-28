@@ -1,6 +1,7 @@
 package com.example.gilgaltour.Modelo;
 
-
+import java.util.List;
+import jakarta.persistence.*;
 import jakarta.persistence.Column;
 import jakarta.persistence.Table;
 import jakarta.persistence.Id;
@@ -10,12 +11,12 @@ import jakarta.persistence.Entity;
 @Table(name= "paquete_turistico")
 public class Paquete_Turistico {
     @Id
-    @Column(name="idpaquete", length = 15, nullable = false)
-    String idPaquete;
-    @Column(length = 100, nullable = false)
-    String nomPaquete;
     @Column(length = 15, nullable = false)
-    String ideDestino;
+    String idpaquete;
+    @Column(length = 100, nullable = false)
+    String nompaquete;
+    @Column(length = 15, nullable = false)
+    String idedestino;
     @Column(length = 50, nullable = false)
     String duracion;
     @Column(length = 10, nullable = false)
@@ -26,13 +27,22 @@ public class Paquete_Turistico {
     String incluye;
 
     //Relaciones
+    @OneToMany(mappedBy = "paquete")
+    private List<Reservas> reservas;
+
+    @ManyToOne
+    @JoinColumn(insertable = false, updatable = false)
+    private Destino destino;
+
+
 
     //Constructores
 
-    public Paquete_Turistico(String idPaquete, String nomPaquete, String ideDestino, String duracion, Double precio, Integer cupos, String incluye) {
-        this.idPaquete = idPaquete;
-        this.nomPaquete = nomPaquete;
-        this.ideDestino = ideDestino;
+
+    public Paquete_Turistico(String idpaquete, String nompaquete, String idedestino, String duracion, Double precio, Integer cupos, String incluye) {
+        this.idpaquete = idpaquete;
+        this.nompaquete = nompaquete;
+        this.idedestino = idedestino;
         this.duracion = duracion;
         this.precio = precio;
         this.cupos = cupos;
@@ -44,28 +54,28 @@ public class Paquete_Turistico {
 
     //Encapsular
 
-    public String getIdPaquete() {
-        return idPaquete;
+    public String getIdpaquete() {
+        return idpaquete;
     }
 
-    public void setIdPaquete(String idPaquete) {
-        this.idPaquete = idPaquete;
+    public void setIdpaquete(String idpaquete) {
+        this.idpaquete = idpaquete;
     }
 
-    public String getNomPaquete() {
-        return nomPaquete;
+    public String getNompaquete() {
+        return nompaquete;
     }
 
-    public void setNomPaquete(String nomPaquete) {
-        this.nomPaquete = nomPaquete;
+    public void setNompaquete(String nompaquete) {
+        this.nompaquete = nompaquete;
     }
 
-    public String getIdeDestino() {
-        return ideDestino;
+    public String getIdedestino() {
+        return idedestino;
     }
 
-    public void setIdeDestino(String ideDestino) {
-        this.ideDestino = ideDestino;
+    public void setIdedestino(String idedestino) {
+        this.idedestino = idedestino;
     }
 
     public String getDuracion() {

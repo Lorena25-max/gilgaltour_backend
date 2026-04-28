@@ -8,6 +8,5 @@ import java.util.List;
 
 @Repository
 public interface IDestino extends JpaRepository<Destino,String> {
-    List<Destino> findByNomDestino(String NomDestino);
-    List<Destino> findByIdeDestino(String IdeDestino);
+    List<Destino> findByNomdestino(String Nomdestino);
 }

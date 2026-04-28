@@ -53,7 +53,7 @@ public class SCliente {
     // Consultar por nombre
     public List<Cliente> consultarPorNombre(String nomCliente) throws Exception {
         try {
-            return iCliente.findByNomCliente(nomCliente);
+            return iCliente.findByNomcliente(nomCliente);
         } catch (Exception error) {
             throw new Exception(error.getMessage());
         }
@@ -67,11 +67,11 @@ public class SCliente {
             if (encontrado.isPresent()) {
                 Cliente nuevo = encontrado.get();
 
-                nuevo.setNomCliente(cliente.getNomCliente());
+                nuevo.setNomcliente(cliente.getNomcliente());
                 nuevo.setApellido(cliente.getApellido());
                 nuevo.setDocumento(cliente.getDocumento());
                 nuevo.setEmail(cliente.getEmail());
-                nuevo.setTelCliente(cliente.getTelCliente());
+                nuevo.setTelcliente(cliente.getTelcliente());
                 nuevo.setFecha_registro(cliente.getFecha_registro());
                 nuevo.setEstado(cliente.getEstado());
 

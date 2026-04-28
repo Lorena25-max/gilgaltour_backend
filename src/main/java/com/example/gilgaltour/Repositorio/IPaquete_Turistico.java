@@ -8,8 +8,8 @@ import java.util.List;
 
 @Repository
 public interface IPaquete_Turistico extends JpaRepository<Paquete_Turistico, String>{
-    List<Paquete_Turistico> findByIdeDestino(String ideDestino);
-    List<Paquete_Turistico> findByNomPaquete(String nomPaquete);
-    List<Paquete_Turistico> findByPrecioBetween(Double min, Double max);
-    List<Paquete_Turistico> findByIdeDestino(Integer ideDestino);
+
+    List<Paquete_Turistico> findByNompaquete(String nompaquete);
+ //   List<Paquete_Turistico> findByPrecioBetween(Double min, Double max);
+    List<Paquete_Turistico> findByIdedestino(String idedestino);
 }

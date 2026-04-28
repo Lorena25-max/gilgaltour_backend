@@ -1,70 +1,77 @@
 package com.example.gilgaltour.Modelo;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-
+import java.util.List;
+import jakarta.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-@Table(name= "cliente")
+@Table(name = "cliente")
 public class Cliente {
 
-    //Atributos
     @Id
-    @Column(name="idecliente", length = 15, nullable = false)
-    String ideCliente;
-    @Column(length = 100, nullable = false)
-    String nomCliente;
-    @Column(length = 100, nullable = false)
-    String apellido;
     @Column(length = 15, nullable = false)
-    String documento;
+    private String idecliente;
+
+    @Column(length = 100, nullable = false)
+    private String nomcliente;
+
+    @Column(length = 100, nullable = false)
+    private String apellido;
+
+    @Column(length = 15, nullable = false)
+    private String documento;
+
     @Column(length = 50, nullable = false)
-    String email;
+    private String email;
+
     @Column(length = 10, nullable = false)
-    String telCliente;
-    @Column(length = 15, nullable = false)
-    LocalDate fecha_registro;
+    private String telcliente;
+
+    @Column(nullable = false)
+    private LocalDate fecha_registro;
+
     @Column(length = 200, nullable = false)
-    String estado;
+    private String estado;
 
     //Relaciones
+    @OneToMany(mappedBy = "cliente")
+    private List<Reservas> reservas;
 
-    // Constructores
 
+    // Constructor vacío
+    public Cliente() {
+    }
 
-    public Cliente(String ideCliente, String nomCliente, String apellido, String documento, String email, String telCliente, LocalDate fecha_registro, String estado) {
-        this.ideCliente = ideCliente;
-        this.nomCliente = nomCliente;
+    // Constructor completo
+    public Cliente(String idecliente, String nomcliente, String apellido,
+                   String documento, String email, String telcliente,
+                   LocalDate fecha_registro, String estado) {
+        this.idecliente = idecliente;
+        this.nomcliente = nomcliente;
         this.apellido = apellido;
         this.documento = documento;
         this.email = email;
-        this.telCliente = telCliente;
+        this.telcliente = telcliente;
         this.fecha_registro = fecha_registro;
         this.estado = estado;
     }
 
-    public Cliente() {
+    // GETTERS Y SETTERS
+
+    public String getIdecliente() {
+        return idecliente;
     }
 
-    //Encapsular
-
-    public String getIdeCliente() {
-        return ideCliente;
+    public void setIdecliente(String idecliente) {
+        this.idecliente = idecliente;
     }
 
-    public void setIdeCliente(String ideCliente) {
-        this.ideCliente = ideCliente;
+    public String getNomcliente() {
+        return nomcliente;
     }
 
-    public String getNomCliente() {
-        return nomCliente;
-    }
-
-    public void setNomCliente(String nomCliente) {
-        this.nomCliente = nomCliente;
+    public void setNomcliente(String nomcliente) {
+        this.nomcliente = nomcliente;
     }
 
     public String getApellido() {
@@ -91,12 +98,12 @@ public class Cliente {
         this.email = email;
     }
 
-    public String getTelCliente() {
-        return telCliente;
+    public String getTelcliente() {
+        return telcliente;
     }
 
-    public void setTelCliente(String telCliente) {
-        this.telCliente = telCliente;
+    public void setTelcliente(String telcliente) {
+        this.telcliente = telcliente;
     }
 
     public LocalDate getFecha_registro() {
@@ -115,6 +122,4 @@ public class Cliente {
         this.estado = estado;
     }
 }
-
-
 

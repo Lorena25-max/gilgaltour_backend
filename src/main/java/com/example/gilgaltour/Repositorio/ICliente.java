@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface ICliente extends JpaRepository<Cliente,String> {
-    List<Cliente> findByNomCliente(String NomCliente);
+    List<Cliente> findByNomcliente(String Nomcliente);
 }

@@ -86,20 +86,6 @@ public class CPaquete_Turistico {
         }
     }
 
-    // Consultar por rango de precios
-    @GetMapping("/precio")
-    public ResponseEntity<?> consultarPorPrecio(@RequestParam Double min,
-                                                @RequestParam Double max) {
-        try {
-            return ResponseEntity
-                    .status(HttpStatus.OK)
-                    .body(sPaquete.consultarPorPrecio(min, max));
-        } catch (Exception error) {
-            return ResponseEntity
-                    .status(HttpStatus.BAD_REQUEST)
-                    .body(error.getMessage());
-        }
-    }
 
     // Modificar paquete
     @PutMapping("/{idPaquete}")

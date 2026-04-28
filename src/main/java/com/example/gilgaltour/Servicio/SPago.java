@@ -52,27 +52,27 @@ public class SPago {
     }
 
     // Consultar por estado
-    public List<Pago> consultarPorEstado(String estadoPago) throws Exception {
+    public List<Pago> consultarPorEstado(String Estadopago) throws Exception {
         try {
-            return iPago.findByEstadoPago(estadoPago);
+            return iPago.findByEstadopago(Estadopago);
         } catch (Exception error) {
             throw new Exception(error.getMessage());
         }
     }
 
     // Consultar por método de pago
-    public List<Pago> consultarPorMetodo(String metodoPago) throws Exception {
+    public List<Pago> consultarPorMetodo(String Metodopago) throws Exception {
         try {
-            return iPago.findByMetodoPago(metodoPago);
+            return iPago.findByMetodopago(Metodopago);
         } catch (Exception error) {
             throw new Exception(error.getMessage());
         }
     }
 
     // Consultar por reserva
-    public List<Pago> consultarPorReserva(String ideReserva) throws Exception {
+    public List<Pago> consultarPorReserva(String Idereserva) throws Exception {
         try {
-            return iPago.findByIdeReserva(ideReserva);
+            return iPago.findByIdereserva(Idereserva);
         } catch (Exception error) {
             throw new Exception(error.getMessage());
         }
@@ -86,11 +86,11 @@ public class SPago {
             if (encontrado.isPresent()) {
                 Pago nuevo = encontrado.get();
 
-                nuevo.setIdeReserva(pago.getIdeReserva());
-                nuevo.setFechaPago(pago.getFechaPago());
-                nuevo.setTotalPagado(pago.getTotalPagado());
-                nuevo.setMetodoPago(pago.getMetodoPago());
-                nuevo.setEstadoPago(pago.getEstadoPago());
+                nuevo.setIdereserva(pago.getIdereserva());
+                nuevo.setFechapago(pago.getFechapago());
+                nuevo.setTotalpagado(pago.getTotalpagado());
+                nuevo.setMetodopago(pago.getMetodopago());
+                nuevo.setEstadopago(pago.getEstadopago());
 
                 return iPago.save(nuevo);
 

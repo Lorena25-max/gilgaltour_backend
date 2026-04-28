@@ -1,47 +1,61 @@
 package com.example.gilgaltour.Modelo;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Table;
-import jakarta.persistence.Id;
-import jakarta.persistence.Entity;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import jakarta.persistence.*;
 import org.springframework.cglib.core.Local;
 
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name= "reserva")
 
 public class Reservas {
     @Id
-    @Column(name="idreserva", length = 15, nullable = false)
-    String idReserva;
     @Column(length = 15, nullable = false)
-    String ideCliente;
+    String idreserva;
     @Column(length = 15, nullable = false)
-    String idePaquete;
+    String idecliente;
+    @Column(length = 15, nullable = false)
+    String idepaquete;
     @Column(length = 50, nullable = false)
-    LocalDate fechaReserva;
+    LocalDate fechareserva;
     @Column(length = 50, nullable = false)
-    LocalDate fechaViaje;
+    LocalDate fechaviaje;
     @Column(length = 10, nullable = false)
-    Double totalPagado;
+    Double totalpagado;
     @Column(length = 5, nullable = false)
-    Integer cantidadPersonas;
+    Integer cantidadpersonas;
     @Column(length = 200, nullable = false)
     String estado;
 
     //Relaciones
+    @ManyToOne
+    @JoinColumn(insertable = false, updatable = false)
+    private Cliente cliente;
+
+    @ManyToOne
+    @JoinColumn(insertable = false, updatable = false)
+    private Paquete_Turistico paquete;
+
+    @OneToMany(mappedBy = "reserva")
+    private List<Pago> pagos;
+
+
 
     //Constructores
-    public Reservas(String idReserva, String ideCliente, String idePaquete, LocalDate fechaReserva, LocalDate fechaViaje, Double totalPagado, Integer cantidadPersonas, String estado) {
-        this.idReserva = idReserva;
-        this.ideCliente = ideCliente;
-        this.idePaquete = idePaquete;
-        this.fechaReserva = fechaReserva;
-        this.fechaViaje = fechaViaje;
-        this.totalPagado = totalPagado;
-        this.cantidadPersonas = cantidadPersonas;
+
+
+    public Reservas(String idreserva, String idecliente, String idepaquete, LocalDate fechareserva, LocalDate fechaviaje, Double totalpagado, Integer cantidadpersonas, String estado, Cliente cliente) {
+        this.idreserva = idreserva;
+        this.idecliente = idecliente;
+        this.idepaquete = idepaquete;
+        this.fechareserva = fechareserva;
+        this.fechaviaje = fechaviaje;
+        this.totalpagado = totalpagado;
+        this.cantidadpersonas = cantidadpersonas;
         this.estado = estado;
     }
 
@@ -50,60 +64,61 @@ public class Reservas {
 
     //Encapsular
 
-    public String getIdReserva() {
-        return idReserva;
+
+    public String getIdreserva() {
+        return idreserva;
     }
 
-    public void setIdReserva(String idReserva) {
-        this.idReserva = idReserva;
+    public void setIdreserva(String idreserva) {
+        this.idreserva = idreserva;
     }
 
-    public String getIdeCliente() {
-        return ideCliente;
+    public String getIdecliente() {
+        return idecliente;
     }
 
-    public void setIdeCliente(String ideCliente) {
-        this.ideCliente = ideCliente;
+    public void setIdecliente(String idecliente) {
+        this.idecliente = idecliente;
     }
 
-    public String getIdePaquete() {
-        return idePaquete;
+    public String getIdepaquete() {
+        return idepaquete;
     }
 
-    public void setIdePaquete(String idePaquete) {
-        this.idePaquete = idePaquete;
+    public void setIdepaquete(String idepaquete) {
+        this.idepaquete = idepaquete;
     }
 
-    public LocalDate getFechaReserva() {
-        return fechaReserva;
+    public LocalDate getFechareserva() {
+        return fechareserva;
     }
 
-    public void setFechaReserva(LocalDate fechaReserva) {
-        this.fechaReserva = fechaReserva;
+    public void setFechareserva(LocalDate fechareserva) {
+        this.fechareserva = fechareserva;
     }
 
-    public LocalDate getFechaViaje() {
-        return fechaViaje;
+    public LocalDate getFechaviaje() {
+        return fechaviaje;
     }
 
-    public void setFechaViaje(LocalDate fechaViaje) {
-        this.fechaViaje = fechaViaje;
+    public void setFechaviaje(LocalDate fechaviaje) {
+        this.fechaviaje = fechaviaje;
     }
 
-    public Double getTotalPagado() {
-        return totalPagado;
+    public Double getTotalpagado() {
+        return totalpagado;
     }
 
-    public void setTotalPagado(Double totalPagado) {
-        this.totalPagado = totalPagado;
+    public void setTotalpagado(Double totalpagado) {
+        this.totalpagado = totalpagado;
     }
 
-    public Integer getCantidadPersonas() {
-        return cantidadPersonas;
+    public Integer getCantidadpersonas() {
+        return cantidadpersonas;
     }
 
-    public void setCantidadPersonas(Integer cantidadPersonas) {
-        this.cantidadPersonas = cantidadPersonas;
+    public void setCantidadpersonas(Integer cantidadpersonas) {
+        this.cantidadpersonas = cantidadpersonas;
     }
 
     public String getEstado() {

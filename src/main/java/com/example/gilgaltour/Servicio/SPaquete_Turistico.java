@@ -51,9 +51,9 @@ public class SPaquete_Turistico {
     }
 
     // Consultar por destino
-    public List<Paquete_Turistico> consultarPorDestino(String ideDestino) throws Exception {
+    public List<Paquete_Turistico> consultarPorDestino(String idedestino) throws Exception {
         try {
-            return iPaquete_Turistico.findByIdeDestino(ideDestino);
+            return iPaquete_Turistico.findByIdedestino(idedestino);
         } catch (Exception error) {
             throw new Exception(error.getMessage());
         }
@@ -62,20 +62,12 @@ public class SPaquete_Turistico {
     // Consultar por nombre (búsqueda)
     public List<Paquete_Turistico> consultarPorNombre(String nomPaquete) throws Exception {
         try {
-            return iPaquete_Turistico.findByNomPaquete(nomPaquete);
+            return iPaquete_Turistico.findByNompaquete(nomPaquete);
         } catch (Exception error) {
             throw new Exception(error.getMessage());
         }
     }
 
-    // Consultar por rango de precios
-    public List<Paquete_Turistico> consultarPorPrecio(Double min, Double max) throws Exception {
-        try {
-            return iPaquete_Turistico.findByPrecioBetween(min, max);
-        } catch (Exception error) {
-            throw new Exception(error.getMessage());
-        }
-    }
 
     // Modificar paquete
     public Paquete_Turistico modificarPaquete(String idPaquete, Paquete_Turistico paquete) throws Exception {
@@ -85,8 +77,8 @@ public class SPaquete_Turistico {
             if (encontrado.isPresent()) {
                 Paquete_Turistico nuevo = encontrado.get();
 
-                nuevo.setNomPaquete(paquete.getNomPaquete());
-                nuevo.setIdeDestino(paquete.getIdeDestino());
+                nuevo.setNompaquete(paquete.getNompaquete());
+                nuevo.setIdedestino(paquete.getIdedestino());
                 nuevo.setDuracion(paquete.getDuracion());
                 nuevo.setPrecio(paquete.getPrecio());
                 nuevo.setCupos(paquete.getCupos());

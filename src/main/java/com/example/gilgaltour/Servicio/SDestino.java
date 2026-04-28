@@ -54,7 +54,7 @@ public class SDestino {
     // Consultar por nombre
     public List<Destino> consultarPorNombre(String nomDestino) throws Exception {
         try {
-            return iDestino.findByNomDestino(nomDestino);
+            return iDestino.findByNomdestino(nomDestino);
         } catch (Exception error) {
             throw new Exception(error.getMessage());
         }
@@ -68,7 +68,7 @@ public class SDestino {
             if (encontrado.isPresent()) {
                 Destino nuevo = encontrado.get();
 
-                nuevo.setNomDestino(destino.getNomDestino());
+                nuevo.setNomdestino(destino.getNomdestino());
                 nuevo.setCiudad(destino.getCiudad());
                 nuevo.setDescripcion(destino.getDescripcion());
                 nuevo.setPrecio(destino.getPrecio());

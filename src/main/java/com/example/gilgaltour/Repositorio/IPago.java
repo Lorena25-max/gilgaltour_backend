@@ -9,9 +9,9 @@ import java.time.LocalDate;
 
 @Repository
 public interface IPago extends JpaRepository<Pago,String> {
-    List<Pago> findByMetodoPago(String metodoPago);
-    List<Pago> findByEstadoPago(String estadoPago);
-    List<Pago> findByIdeReserva(String ideReserva);
-    List<Pago> findByFechaPago(LocalDate fechaPago);
+    List<Pago> findByMetodopago(String Metodopago);
+    List<Pago> findByEstadopago(String Estadopago);
+    List<Pago> findByIdereserva(String Idereserva);
+    List<Pago> findByFechapago(LocalDate Fechapago);
 
 }

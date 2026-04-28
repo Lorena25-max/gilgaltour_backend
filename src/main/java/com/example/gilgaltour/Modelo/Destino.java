@@ -1,9 +1,7 @@
 package com.example.gilgaltour.Modelo;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Table;
-import jakarta.persistence.Id;
-import jakarta.persistence.Entity;
+import java.util.List;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name= "destino")
@@ -11,10 +9,10 @@ public class Destino {
     //Atributos
 
     @Id
-    @Column(name="idedestino", length = 15, nullable = false)
-    String ideDestino;
+    @Column(length = 15, nullable = false)
+    String idedestino;
     @Column(length = 100, nullable = false)
-    String nomDestino;
+    String nomdestino;
     @Column(length = 100, nullable = false)
     String ciudad;
     @Column(length = 50, nullable = false)
@@ -25,12 +23,15 @@ public class Destino {
     String activo;
 
     //Relaciones
+    @OneToMany(mappedBy = "destino")
+    private List<Paquete_Turistico> paquetes;
+
 
     // Constructores
 
-    public Destino(String ideDestino, String nomDestino, String ciudad, String descripcion, Double precio, String activo) {
-        this.ideDestino = ideDestino;
-        this.nomDestino = nomDestino;
+    public Destino(String idedestino, String nomdestino, String ciudad, String descripcion, Double precio, String activo) {
+        this.idedestino = idedestino;
+        this.nomdestino = nomdestino;
         this.ciudad = ciudad;
         this.descripcion = descripcion;
         this.precio = precio;
@@ -42,20 +43,21 @@ public class Destino {
 
     //Encapsular
 
-    public String getIdeDestino() {
-        return ideDestino;
+
+    public String getIdedestino() {
+        return idedestino;
     }
 
-    public void setIdeDestino(String ideDestino) {
-        this.ideDestino = ideDestino;
+    public void setIdedestino(String idedestino) {
+        this.idedestino = idedestino;
     }
 
-    public String getNomDestino() {
-        return nomDestino;
+    public String getNomdestino() {
+        return nomdestino;
     }
 
-    public void setNomDestino(String nomDestino) {
-        this.nomDestino = nomDestino;
+    public void setNomdestino(String nomdestino) {
+        this.nomdestino = nomdestino;
     }
 
     public String getCiudad() {

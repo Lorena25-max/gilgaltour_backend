@@ -54,7 +54,7 @@ public class SReservas {
     // Consultar por cliente
     public List<Reservas> consultarPorCliente(String ideCliente) throws Exception {
         try {
-            return iReserva.findByIdeCliente(ideCliente);
+            return iReserva.findByIdecliente(ideCliente);
         } catch (Exception error) {
             throw new Exception(error.getMessage());
         }
@@ -63,7 +63,7 @@ public class SReservas {
     // Consultar por paquete
     public List<Reservas> consultarPorPaquete(String idePaquete) throws Exception {
         try {
-            return iReserva.findByIdePaquete(idePaquete);
+            return iReserva.findByIdepaquete(idePaquete);
         } catch (Exception error) {
             throw new Exception(error.getMessage());
         }
@@ -77,12 +77,12 @@ public class SReservas {
             if (encontrado.isPresent()) {
                 Reservas nuevo = encontrado.get();
 
-                nuevo.setIdeCliente(reserva.getIdeCliente());
-                nuevo.setIdePaquete(reserva.getIdePaquete());
-                nuevo.setFechaReserva(reserva.getFechaReserva());
-                nuevo.setFechaViaje(reserva.getFechaViaje());
-                nuevo.setTotalPagado(reserva.getTotalPagado());
-                nuevo.setCantidadPersonas(reserva.getCantidadPersonas());
+                nuevo.setIdecliente(reserva.getIdecliente());
+                nuevo.setIdepaquete(reserva.getIdepaquete());
+                nuevo.setFechareserva(reserva.getFechareserva());
+                nuevo.setFechaviaje(reserva.getFechaviaje());
+                nuevo.setTotalpagado(reserva.getTotalpagado());
+                nuevo.setCantidadpersonas(reserva.getCantidadpersonas());
                 nuevo.setEstado(reserva.getEstado());
 
                 return iReserva.save(nuevo);
