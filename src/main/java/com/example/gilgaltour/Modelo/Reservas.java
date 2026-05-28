@@ -10,45 +10,72 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name= "reserva")
+@Table(name = "reserva")
 
 public class Reservas {
+
     @Id
     @Column(length = 15, nullable = false)
     String idreserva;
+
     @Column(length = 15, nullable = false)
     String idecliente;
+
     @Column(length = 15, nullable = false)
     String idepaquete;
+
     @Column(length = 50, nullable = false)
     LocalDate fechareserva;
+
     @Column(length = 50, nullable = false)
     LocalDate fechaviaje;
+
     @Column(length = 10, nullable = false)
     Double totalpagado;
+
     @Column(length = 5, nullable = false)
     Integer cantidadpersonas;
+
     @Column(length = 200, nullable = false)
     String estado;
 
-    //Relaciones
+    // Relaciones
+
     @ManyToOne
-    @JoinColumn(insertable = false, updatable = false)
+    @JoinColumn(
+            name = "idecliente",
+            referencedColumnName = "idecliente",
+            insertable = false,
+            updatable = false
+    )
     private Cliente cliente;
 
     @ManyToOne
-    @JoinColumn(insertable = false, updatable = false)
+    @JoinColumn(
+            name = "idepaquete",
+            referencedColumnName = "idpaquete",
+            insertable = false,
+            updatable = false
+    )
     private Paquete_Turistico paquete;
 
     @OneToMany(mappedBy = "reserva")
     private List<Pago> pagos;
 
+    // Constructores
 
+    public Reservas(
+            String idreserva,
+            String idecliente,
+            String idepaquete,
+            LocalDate fechareserva,
+            LocalDate fechaviaje,
+            Double totalpagado,
+            Integer cantidadpersonas,
+            String estado,
+            Cliente cliente
+    ) {
 
-    //Constructores
-
-
-    public Reservas(String idreserva, String idecliente, String idepaquete, LocalDate fechareserva, LocalDate fechaviaje, Double totalpagado, Integer cantidadpersonas, String estado, Cliente cliente) {
         this.idreserva = idreserva;
         this.idecliente = idecliente;
         this.idepaquete = idepaquete;
@@ -57,13 +84,13 @@ public class Reservas {
         this.totalpagado = totalpagado;
         this.cantidadpersonas = cantidadpersonas;
         this.estado = estado;
+
     }
 
     public Reservas() {
     }
 
-    //Encapsular
-
+    // Encapsular
 
     public String getIdreserva() {
         return idreserva;
@@ -128,4 +155,5 @@ public class Reservas {
     public void setEstado(String estado) {
         this.estado = estado;
     }
+
 }

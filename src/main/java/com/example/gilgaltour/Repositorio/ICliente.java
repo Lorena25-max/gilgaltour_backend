@@ -7,6 +7,11 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface ICliente extends JpaRepository<Cliente,String> {
-    List<Cliente> findByNomcliente(String Nomcliente);
+public interface ICliente
+        extends JpaRepository<Cliente,String> {
+
+    List<Cliente> findByNomcliente(String nomcliente);
+
+    Cliente findByEmail(String email);
+
 }

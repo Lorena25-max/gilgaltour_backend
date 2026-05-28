@@ -6,7 +6,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Table;
 import jakarta.persistence.Id;
 import jakarta.persistence.Entity;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.time.LocalDate;
 
 @Entity
@@ -27,6 +27,7 @@ public class Pago {
     String estadopago;
 
     //Relaciones
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(insertable = false, updatable = false)
     private Reservas reserva;

@@ -2,6 +2,7 @@ package com.example.gilgaltour.Servicio;
 
 import com.example.gilgaltour.Modelo.Reservas;
 import com.example.gilgaltour.Repositorio.IReserva;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,95 +22,204 @@ public class SReservas {
 
     // Guardar reserva
     public Reservas guardarReserva(Reservas reserva) throws Exception {
+
         try {
+
+            // Obtener todas las reservas
+            List<Reservas> reservas = iReserva.findAll();
+
+            // Generar consecutivo
+            int siguienteNumero = reservas.size() + 1;
+
+            // Formato R001
+            String nuevoId =
+                    String.format("R%03d", siguienteNumero);
+
+            reserva.setIdreserva(nuevoId);
+
+            // Fecha automática
+            if (reserva.getFechareserva() == null) {
+
+                reserva.setFechareserva(LocalDate.now());
+
+            }
+
             return iReserva.save(reserva);
+
         } catch (Exception error) {
+
             throw new Exception(error.getMessage());
+
         }
+
     }
 
     // Consultar todas
     public List<Reservas> consultarReservas() throws Exception {
+
         try {
+
             return iReserva.findAll();
+
         } catch (Exception error) {
+
             throw new Exception(error.getMessage());
+
         }
+
     }
 
     // Consultar por ID
-    public Reservas consultarPorId(String idReserva) throws Exception {
+    public Reservas consultarPorId(String idReserva)
+            throws Exception {
+
         try {
-            Optional<Reservas> encontrado = iReserva.findById(idReserva);
+
+            Optional<Reservas> encontrado =
+                    iReserva.findById(idReserva);
+
             if (encontrado.isPresent()) {
+
                 return encontrado.get();
+
             } else {
+
                 throw new Exception("Reserva no encontrada");
+
             }
+
         } catch (Exception error) {
+
             throw new Exception(error.getMessage());
+
         }
+
     }
 
     // Consultar por cliente
-    public List<Reservas> consultarPorCliente(String ideCliente) throws Exception {
+    public List<Reservas> consultarPorCliente(
+            String ideCliente
+    ) throws Exception {
+
         try {
+
             return iReserva.findByIdecliente(ideCliente);
+
         } catch (Exception error) {
+
             throw new Exception(error.getMessage());
+
         }
+
     }
 
     // Consultar por paquete
-    public List<Reservas> consultarPorPaquete(String idePaquete) throws Exception {
+    public List<Reservas> consultarPorPaquete(
+            String idePaquete
+    ) throws Exception {
+
         try {
+
             return iReserva.findByIdepaquete(idePaquete);
+
         } catch (Exception error) {
+
             throw new Exception(error.getMessage());
+
         }
+
     }
 
     // Modificar reserva
-    public Reservas modificarReserva(String idReserva, Reservas reserva) throws Exception {
+    public Reservas modificarReserva(
+            String idReserva,
+            Reservas reserva
+    ) throws Exception {
+
         try {
-            Optional<Reservas> encontrado = iReserva.findById(idReserva);
+
+            Optional<Reservas> encontrado =
+                    iReserva.findById(idReserva);
 
             if (encontrado.isPresent()) {
+
                 Reservas nuevo = encontrado.get();
 
-                nuevo.setIdecliente(reserva.getIdecliente());
-                nuevo.setIdepaquete(reserva.getIdepaquete());
-                nuevo.setFechareserva(reserva.getFechareserva());
-                nuevo.setFechaviaje(reserva.getFechaviaje());
-                nuevo.setTotalpagado(reserva.getTotalpagado());
-                nuevo.setCantidadpersonas(reserva.getCantidadpersonas());
-                nuevo.setEstado(reserva.getEstado());
+                nuevo.setIdecliente(
+                        reserva.getIdecliente()
+                );
+
+                nuevo.setIdepaquete(
+                        reserva.getIdepaquete()
+                );
+
+                nuevo.setFechareserva(
+                        reserva.getFechareserva()
+                );
+
+                nuevo.setFechaviaje(
+                        reserva.getFechaviaje()
+                );
+
+                nuevo.setTotalpagado(
+                        reserva.getTotalpagado()
+                );
+
+                nuevo.setCantidadpersonas(
+                        reserva.getCantidadpersonas()
+                );
+
+                nuevo.setEstado(
+                        reserva.getEstado()
+                );
 
                 return iReserva.save(nuevo);
 
             } else {
-                throw new Exception("No se puede modificar, reserva no existe");
+
+                throw new Exception(
+                        "No se puede modificar, reserva no existe"
+                );
+
             }
 
         } catch (Exception error) {
+
             throw new Exception(error.getMessage());
+
         }
+
     }
 
     // Eliminar reserva
-    public boolean eliminarReserva(String idReserva) throws Exception {
+    public boolean eliminarReserva(String idReserva)
+            throws Exception {
+
         try {
-            Optional<Reservas> encontrado = iReserva.findById(idReserva);
+
+            Optional<Reservas> encontrado =
+                    iReserva.findById(idReserva);
 
             if (encontrado.isPresent()) {
+
                 iReserva.deleteById(idReserva);
+
                 return true;
+
             } else {
-                throw new Exception("No se puede eliminar, reserva no existe");
+
+                throw new Exception(
+                        "No se puede eliminar, reserva no existe"
+                );
+
             }
 
         } catch (Exception error) {
+
             throw new Exception(error.getMessage());
+
         }
+
     }
+
 }

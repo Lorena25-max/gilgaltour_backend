@@ -6,6 +6,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Table;
 import jakarta.persistence.Id;
 import jakarta.persistence.Entity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name= "paquete_turistico")
@@ -27,6 +28,7 @@ public class Paquete_Turistico {
     String incluye;
 
     //Relaciones
+    @JsonIgnore
     @OneToMany(mappedBy = "paquete")
     private List<Reservas> reservas;
 

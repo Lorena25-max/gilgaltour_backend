@@ -3,6 +3,7 @@ package com.example.gilgaltour.Modelo;
 import java.util.List;
 import jakarta.persistence.*;
 import java.time.LocalDate;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "cliente")
@@ -27,6 +28,9 @@ public class Cliente {
     @Column(length = 10, nullable = false)
     private String telcliente;
 
+    @Column(length = 255, nullable = false)
+    private String password;
+
     @Column(nullable = false)
     private LocalDate fecha_registro;
 
@@ -34,6 +38,7 @@ public class Cliente {
     private String estado;
 
     //Relaciones
+    @JsonIgnore
     @OneToMany(mappedBy = "cliente")
     private List<Reservas> reservas;
 
@@ -43,20 +48,23 @@ public class Cliente {
     }
 
     // Constructor completo
-    public Cliente(String idecliente, String nomcliente, String apellido,
-                   String documento, String email, String telcliente,
-                   LocalDate fecha_registro, String estado) {
+
+    public Cliente(String idecliente, String nomcliente, String apellido, String documento, String email, String telcliente, String password, LocalDate fecha_registro, String estado, List<Reservas> reservas) {
         this.idecliente = idecliente;
         this.nomcliente = nomcliente;
         this.apellido = apellido;
         this.documento = documento;
         this.email = email;
         this.telcliente = telcliente;
+        this.password = password;
         this.fecha_registro = fecha_registro;
         this.estado = estado;
+        this.reservas = reservas;
     }
 
+
     // GETTERS Y SETTERS
+
 
     public String getIdecliente() {
         return idecliente;
@@ -106,6 +114,14 @@ public class Cliente {
         this.telcliente = telcliente;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public LocalDate getFecha_registro() {
         return fecha_registro;
     }
@@ -120,6 +136,14 @@ public class Cliente {
 
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+
+    public List<Reservas> getReservas() {
+        return reservas;
+    }
+
+    public void setReservas(List<Reservas> reservas) {
+        this.reservas = reservas;
     }
 }
 
